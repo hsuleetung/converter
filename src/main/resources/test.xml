@@ -4,18 +4,16 @@
     <people>
         <sex>男</sex>
         <age>20</age>
-        <name>何嘉旋</name>
-
+        <name>王麻子</name>
         <people>
             <sex>女</sex>
             <age>201</age>
-            <name>何嘉旋2</name>
+            <name>李傻子</name>
         </people>
         <people>
             <sex>男</sex>
             <age>201</age>
-            <name>何嘉旋2</name>
+            <name>王大锤</name>
         </people>
-
     </people>
 </xml>
