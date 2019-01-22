@@ -34,11 +34,11 @@ public abstract class AbstractDataReader implements DataReader {
      * @return
      * @throws Exception
      */
-    public Map<String, Object> read(InputStream inputStream) throws Exception {
+    public void read(InputStream inputStream) throws Exception {
         byte[] bytes = new byte[inputStream.available()];
         inputStream.read(bytes);
         String data = new String(bytes);
-        return read(data);
+        read(data);
     }
 
     /**

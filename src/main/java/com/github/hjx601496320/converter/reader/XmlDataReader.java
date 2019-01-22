@@ -25,13 +25,13 @@ public class XmlDataReader extends AbstractDataReader implements DataReader {
      * @param stringData
      * @return
      */
-    public Map<String, Object> read(String stringData) {
+    public void read(String stringData) {
         this.beConvertData = stringData;
         try {
             InputStream inputStream = new ByteArrayInputStream(stringData.getBytes("utf-8"));
             Element rootElement = getRootElement(inputStream);
             this.requestData = foreachElement(rootElement);
-            return this.requestData;
+            return;
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         } catch (JDOMException e) {

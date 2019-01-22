@@ -22,7 +22,7 @@ public class JsonDataReader extends AbstractDataReader implements DataReader {
      * @param stringData
      * @return
      */
-    public Map<String, Object> read(String stringData) throws Exception {
+    public void read(String stringData) throws Exception {
         this.beConvertData = stringData;
         for (char c : stringData.toCharArray()) {
             if (c == '\u0000') {
@@ -32,11 +32,11 @@ public class JsonDataReader extends AbstractDataReader implements DataReader {
                 ArrayList list = JSONObject.parseObject(stringData, ArrayList.class);
                 this.requestData = new HashMap(1);
                 this.requestData.put(ROOT_NAME, list);
-                return this.requestData;
+                return;
             }
             if (c == '{') {
                 this.requestData = JSONObject.parseObject(stringData, HashMap.class);
-                return this.requestData;
+                return;
             }
         }
         throw new RuntimeException("解析json异常:\n" + stringData);

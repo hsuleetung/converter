@@ -18,7 +18,7 @@ public interface DataReader {
      * @param stringData
      * @return
      */
-    Map<String, Object> read(String stringData) throws Exception;
+    void read(String stringData) throws Exception;
 
     /**
      * 读取流中的数据
@@ -27,7 +27,7 @@ public interface DataReader {
      * @return
      * @throws Exception
      */
-    Map<String, Object> read(InputStream inputStream) throws Exception;
+    void read(InputStream inputStream) throws Exception;
 
     /**
      * 获取数据的所有节点名称

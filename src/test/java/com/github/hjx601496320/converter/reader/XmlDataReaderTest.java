@@ -1,16 +1,18 @@
 package com.github.hjx601496320.converter.reader;
 
+import com.github.hjx601496320.converter.FreeMarkerFtl;
 import org.junit.Test;
 
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Scanner;
 
+@SuppressWarnings("ALL")
 public class XmlDataReaderTest {
 
-    static String getXmlData() {
+    static String getData(String name) {
         StringBuilder sb = new StringBuilder();
-        InputStream resourceAsStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("test.xml");
+        InputStream resourceAsStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(name);
         Scanner scanner = new Scanner(resourceAsStream);
         while (scanner.hasNextLine()) {
             sb.append(scanner.nextLine());
@@ -19,18 +21,31 @@ public class XmlDataReaderTest {
     }
 
     @Test
-    public void read() throws Exception {
+    public void readXml2Xml() throws Exception {
         DataReader dataReader = new XmlDataReader();
-        String xmlData = getXmlData();
-        Map<String, Object> read = dataReader.read(xmlData);
-        System.out.println(read);
+        //读取数据
+        dataReader.read(getData("test.xml"));
+        //设置模板
+        FreeMarkerFtl freeMarkerFtl = new FreeMarkerFtl();
+        freeMarkerFtl.setTemplateName("xml.ftl");
+        freeMarkerFtl.setTemplateText(getData("xml.ftl"));
+        //转换结果
+        String res = dataReader.converterFormat(freeMarkerFtl);
+        System.out.println(res);
     }
 
     @Test
-    public void read1() throws Exception {
-        InputStream resourceAsStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("test.xml");
+    public void readXml2Json() throws Exception {
         DataReader dataReader = new XmlDataReader();
-        Map<String, Object> map = dataReader.read(resourceAsStream);
-        System.out.println(map);
+        //读取数据
+        dataReader.read(getData("test.xml"));
+        //设置模板
+        FreeMarkerFtl freeMarkerFtl = new FreeMarkerFtl();
+        freeMarkerFtl.setTemplateName("json.ftl");
+        freeMarkerFtl.setTemplateText(getData("json.ftl"));
+        //转换结果
+        String res = dataReader.converterFormat(freeMarkerFtl);
+        System.out.println(res);
     }
+
 }
